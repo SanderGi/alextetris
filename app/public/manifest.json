@@ -1,0 +1,50 @@
+{
+  "name": "Tetris",
+  "short_name": "Tetris",
+  "description": "Tetris with multiplayer",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-72x72.png?v=1584759579162",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-96x96.png?v=1584759574242",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-128x128.png?v=1584759576271",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-144x144.png?v=1584759574070",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-152x152.png?v=1584759574158",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-192x192.png?v=1584759574234",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-384x384.png?v=1584759584059",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-512x512.png?v=1584759584060",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
+}

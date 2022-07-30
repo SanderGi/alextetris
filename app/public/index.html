@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tetris</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tetris game with leaderboard">
+    <link rel="icon" href="https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2FtetrisLogo.jpg?v=1584643860722">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Ficon-128x128.png?v=1584759576271">
+    <script>
+        // This is just to force HTTPS (can't do it statically on glitch)
+        if(location.protocol == 'http:') location.protocol = 'https:';
+        if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+            console.log("[PWA Builder] active service worker found, no need to register");
+        } else {
+            // Register the service worker
+            navigator.serviceWorker
+            .register("/sw.js", {
+                scope: "./"
+            })
+            .then(function (reg) {
+                console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+        }
+    </script>
+    
+    <style>
+    #container {
+      position: fixed;
+      top: 0;
+      z-index: 99;
+      width: 0%;
+      height: 0%;
+      background-color: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      touch-action: none;
+    }
+    #item {
+      width: 5rem;
+      height: 5rem;
+      background-color: orange;
+      border: 0.5rem solid rgba(136, 136, 136, .5);
+      border-radius: 50%;
+      touch-action: none;
+      user-select: none;
+      text-align: center;
+      color: white;
+      font-size: 4rem;
+    }
+    #item:active {
+      background-color: rgba(168, 218, 220, 1.00);
+    }
+    #item:hover {
+      cursor: pointer;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="touchSurface" style="width: 100vw; height: 100vh;">
+      <canvas id="canvas"></canvas>
+      <button id="pause" style="display: none;">||</button>
+      <div id="pauseMenu" style="display: none; overflow-x: hidden;"></div> 
+      <button id="playAgain" style="display: none; z-index: 100">PLAY ONE MORE TIME!</button>
+<!--       <button id="rotate" style="display: none;">Emergency Rotate</button>
+       -->
+      <h1 style="color: #00ffff; font-size: 1.3em; position: absolute; left: 0px; top: 0px; margin: auto;" ontouchstart="location.reload();" onclick="location.reload();">V2.1.7</h1>
+<!--       <div id="pauseMenu" style="display: none;"></div>  -->
+    </div>
+    <div id="leaderBoard" style="display: none; overflow: hidden;"></div> 
+    <script src="/utilities.js"></script>
+    <script src="/matrix.js"></script>
+    <script src="/game.js"></script>
+    <script src="/script.js"></script>
+    
+    <div id="container">
+      <div id="item" style="display: none; position: absolute; top: 85vh; left: 75vw;">&#8635;</div>
+    </div>
+    <script>
+    var url = 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Korobeiniki.ogg';
+    var music = new Audio(url);
+    music.loop = true;
+    function play() {
+      music.play().catch(() => setTimeout(play, 200));
+    }
+    play();
+      
+    var dragItem = document.querySelector("#item");
+    var container = document.querySelector("#container");
+
+    var active = false;
+    var currentX;
+    var currentY;
+    var initialX;
+    var initialY;
+    var xOffset = 0;
+    var yOffset = 0;
+      
+    var startX, startY;
+
+    container.addEventListener("touchstart", dragStart, false);
+    container.addEventListener("touchend", dragEnd, false);
+    container.addEventListener("touchmove", drag, false);
+
+    // container.addEventListener("mousedown", dragStart, false);
+    // container.addEventListener("mouseup", dragEnd, false);
+    // container.addEventListener("mousemove", drag, false);
+
+    function dragStart(e) {
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+      startX = xOffset; startY = yOffset;
+
+      if (e.target === dragItem) {
+        active = true;
+      }
+    }
+
+    function dragEnd(e) {
+      if ((currentX == undefined && currentY == undefined) || (Math.abs(xOffset-startX) < 4 * ratio && Math.abs(yOffset-startY) < 4 * ratio)) {
+        game.playerRotate(1, false);
+      }
+      
+      initialX = currentX;
+      initialY = currentY;
+
+      active = false;
+      if (music.paused) play();
+    }
+
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, dragItem);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+  </script>
+  </body>
+</html>
