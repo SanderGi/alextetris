@@ -1,18 +1,12 @@
 body {
-    overflow: hidden;
-    /* background-color: darkgray; */
-    image-rendering: pixelated;
-    background: url('https://cdn.glitch.com/20c3f4c4-6061-400b-8304-49952024a213%2Fbackground.jpg?v=1584643182114');
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  overflow: hidden;
+  image-rendering: pixelated;
+  background: url("/assets/background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
-
-/* body, html {
-   position: fixed;
-  overscroll-behavior: none;
-} */
 
 * {
   -webkit-touch-callout: none;
@@ -24,51 +18,54 @@ body {
   touch-action: none;
 }
 
-input[type=range]{
+input[type="range"] {
   pointer-events: none;
 }
-input[type=range]::-webkit-slider-thumb{/*Webkit Browsers like Chome and Safari*/
+input[type="range"]::-webkit-slider-thumb {
+  /*Webkit Browsers like Chome and Safari*/
   pointer-events: auto;
 }
-input[type=range]::-moz-range-thumb{/*Firefox*/
+input[type="range"]::-moz-range-thumb {
+  /*Firefox*/
   pointer-events: auto;
 }
-input[type=range]::-ms-thumb{/*Internet Explorer*/
+input[type="range"]::-ms-thumb {
+  /*Internet Explorer*/
   pointer-events: auto;
 }
 
-div, p {
+div,
+p {
   margin: 0px;
   padding: none;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 button {
-    display: inline-block;
-    padding: 15px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    margin: auto;
-  }
-  
-  /* button:hover {background-color: #3e8e41} */
-  
-  button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin: auto;
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

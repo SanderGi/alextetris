@@ -1,0 +1,23 @@
+{
+  "name": "tetris",
+  "version": "2.1.7",
+  "description": "The classic tetris game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "cd app && DB_FILE=../data/datafile.nedb PORT=3000 nodemon --inspect server.js"
+  },
+  "dependencies": {
+    "@seald-io/nedb": "^4.1.2",
+    "express": "^5.1.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ],
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

@@ -2,12 +2,12 @@
 
 const CACHE = "pwabuilder-precache";
 const precacheFiles = [
+  "game.js",
   "index.html",
+  "matrix.js",
   "script.js",
   "style.css",
-  "game.js",
-  "matrix.js",
-  "utilities.js"
+  "utilities.js",
 ];
 
 self.addEventListener("install", function (event) {
@@ -31,7 +31,7 @@ self.addEventListener("activate", function (event) {
 });
 
 // If any fetch fails, it will look for the request in the cache and serve it from there first
-self.addEventListener("fetch", function (event) { 
+self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
@@ -59,7 +59,9 @@ self.addEventListener("fetch", function (event) {
             return response;
           })
           .catch(function (error) {
-            console.log("[PWA Builder] Network request failed and no cache." + error);
+            console.log(
+              "[PWA Builder] Network request failed and no cache." + error
+            );
           });
       }
     )
